@@ -1,0 +1,47 @@
+/* ===== Global Theme (Light + Dark) — single source of truth ===== */
+:root {
+  /* Light tokens */
+  --sand-1:#f5f1ec; --sand-2:#efe8dd;
+  --slate:#2f2f2f;  --muted:#6b6b6b;
+  --fern:#4a7c59;   --sky:#6a9fb5; --clay:#93785B;
+  --card:#ffffff;
+
+  --ring: rgba(106,159,181,.45);
+  --shadow-sm: 0 8px 18px rgba(0,0,0,.08);
+  --shadow-md: 0 12px 28px rgba(0,0,0,.12);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.14);
+}
+
+:root[data-theme="dark"] {
+  /* Dark tokens */
+  --sand-1:#121212; --sand-2:#161616;
+  --slate:#f1f1f1;  --muted:#b7b7b7;
+  --fern:#7dd8a0;   --sky:#8ec6dd; --clay:#bfa58f;
+  --card:#1e1e1e;
+
+  --shadow-sm: 0 8px 18px rgba(0,0,0,.35);
+  --shadow-md: 0 12px 28px rgba(0,0,0,.45);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,.55);
+}
+
+/* Global resets */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; overflow-x: hidden;
+  background: var(--sand-1); color: var(--slate);
+  font-family: system-ui, -apple-system, Inter, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+section { width: 100%; }
+
+/* Optional helpers you were using */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .5s, transform .6s; }
+.reveal.in { opacity: 1; transform: none; }
+.cursor-glow {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(600px 300px at var(--cx,50%) var(--cy,50%),
+    color-mix(in oklab, var(--sky) 45%, transparent), transparent 55%);
+  opacity: .12; transition: opacity .25s ease;
+}

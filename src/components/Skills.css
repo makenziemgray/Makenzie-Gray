@@ -1,0 +1,99 @@
+.skills {
+  background-color: #f5f1ec;
+  color: black;
+  padding: 4rem 2rem;
+  width: 100vw;
+  min-height: 100vh; /* 👈 Full-screen height on desktop */
+  box-sizing: border-box;
+}
+
+.skills h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  color: #black;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Individual skill cards */
+.skill-item {
+  background-color: #AC8968;
+  padding: 2rem;
+  border-radius: 16px;
+  width: 240px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-6px);
+}
+
+/* Logo image */
+.skill-logo {
+  height: 72px;
+  width: 72px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.skill-item:hover .skill-logo {
+  transform: scale(1.1);
+}
+
+/* Skill name */
+.skill-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8f1e4;
+  margin-bottom: 1rem;
+}
+
+/* Progress bar container */
+.skill-bar {
+  background-color: #93785B;
+  height: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Animated progress bar fill */
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #93785B,);
+  width: 0;
+  animation: fill-bar 1.5s ease-out forwards;
+}
+
+/* Animate bar from 0 to full width */
+@keyframes fill-bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .skill-item {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .skill-logo {
+    height: 60px;
+    width: 60px;
+  }
+}
