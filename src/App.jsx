@@ -4,12 +4,14 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useLocation
+  useLocation,
 } from "react-router-dom";
 
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Coding from "./pages/Coding";
+import Design from "./pages/Design";
 
 /* Scroll to top on route change (no hash) */
 function ScrollToTop() {
@@ -25,12 +27,9 @@ function ScrollToHash() {
   const { hash } = useLocation();
   useEffect(() => {
     if (!hash) return;
-    // wait a tick so the DOM for that route is ready
     const id = hash.replace("#", "");
     const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [hash]);
   return null;
 }
@@ -43,6 +42,8 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Hero />} />
         <Route path="/about" element={<About />} />
+        <Route path="/coding" element={<Coding />} />
+        <Route path="/design" element={<Design />} />
       </Routes>
     </>
   );
@@ -56,8 +57,3 @@ export default function App() {
     </Router>
   );
 }
-
-
-
-
-

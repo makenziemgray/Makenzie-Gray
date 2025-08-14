@@ -1,0 +1,128 @@
+:root{
+  --sand:#f5f1ec; --sand2:#efe8dd; --card:#fff;
+  --slate:#2f2f2f; --muted:#616161;
+  --fern:#4a7c59; --fern-10:rgba(74,124,89,.10);
+  --ring:rgba(106,159,181,.38);
+  --sky:#6a9fb5; --clay:#93785B;
+
+  --shadow-md:0 12px 28px rgba(0,0,0,.12);
+  --shadow-sm:0 8px 18px rgba(0,0,0,.10);
+}
+
+/* Page background */
+.pg-wrap{
+  min-height:100vh;
+  padding: 1.25rem 1rem 3rem;
+  background:
+    radial-gradient(1100px 420px at 78% 8%, rgba(106,159,181,.10), transparent 60%),
+    radial-gradient(1000px 500px at 16% 88%, rgba(74,124,89,.10), transparent 60%),
+    linear-gradient(180deg, var(--sand) 0%, var(--sand2) 100%);
+}
+
+/* Title block */
+.page-head{
+  max-width: 1200px;
+  margin: 2.6rem auto 0.6rem;   /* pushes title down from navbar */
+  padding: .6rem 0;
+}
+.page-title{
+  margin:0 0 .15rem;
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  font-weight: 900;
+  color: var(--slate);
+  letter-spacing:.2px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.4);
+}
+.page-subtitle{
+  margin:0;
+  color:#6b6b6b;
+}
+
+/* Optional chip bar (used on Coding, removed on Design) */
+.pg-chipbar{
+  position: sticky; top: 66px; z-index: 2;
+  max-width: 1200px; margin: .6rem auto 1.1rem;
+  display:flex; gap:.5rem; flex-wrap:wrap;
+}
+.pg-chip{
+  background:#fff; border:1px solid rgba(0,0,0,.1);
+  color:#444; padding:.48rem .78rem; border-radius:999px; font-weight:700; cursor:pointer;
+  transition: background .2s, color .2s, border-color .2s, transform .08s;
+}
+.pg-chip:hover{ transform: translateY(-1px); }
+.pg-chip.on{ background:#eef3f6; color:#355163; border-color: rgba(106,159,181,.28); }
+
+/* Row layout (no card container feel) */
+.rows-wrap{
+  max-width: 1200px; margin: 1.2rem auto 0;
+  display: grid; gap: 26px;
+}
+
+.row-card{
+  display:grid; grid-template-columns: 500px 1fr; gap: 22px;
+  align-items: start;
+  background: transparent; /* no box */
+  border: 0;
+}
+
+/* 2×2 preview mosaic */
+.row-media{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 160px 160px;
+  gap: 14px;
+  width: 100%;
+}
+.mock{
+  position:relative;
+  border-radius:14px;
+  background:
+    radial-gradient(700px 420px at 65% 30%, rgba(106,159,181,.12), transparent 60%),
+    radial-gradient(700px 420px at 20% 85%, rgba(74,124,89,.10), transparent 60%),
+    #e8efe9;
+  outline: 1px dashed rgba(0,0,0,.18);
+  outline-offset: -8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.06) inset;
+}
+.mock img{ width:100%; height:100%; object-fit:cover; display:block; border-radius:14px; }
+.pg-soon{
+  position:absolute; top:.55rem; right:.55rem;
+  background:#e9dccb; color:#5e4632; border:1px solid rgba(147,120,91,.45);
+  padding:.28rem .55rem; border-radius:999px; font-weight:800; font-size:.82rem;
+}
+
+/* Right column */
+.row-body{ padding-top:.25rem; }
+.row-title{
+  margin:0 0 .1rem; font-size:1.18rem; color:var(--slate); font-weight:900;
+}
+.row-blurb{ margin:0 0 .35rem; color:#525252; }
+.pg-tech{ display:flex; flex-wrap:wrap; gap:.35rem; margin: .15rem 0 .35rem; }
+.pg-techchip{
+  background:#eef3f6; color:#355163; border:1px solid rgba(106,159,181,.25);
+  border-radius:999px; font-weight:700; padding:.25rem .55rem; font-size:.82rem;
+}
+
+.facts-list{ margin: .2rem 0 .9rem 1.1rem; color:#3f3f3f; }
+
+/* GitHub button (Coding only) */
+.actions{ display:flex; gap:.6rem; align-items:center; }
+.gh-btn{
+  display:inline-flex; gap:.45rem; align-items:center;
+  background:#111; color:#fff; border-radius:12px;
+  padding:.58rem .9rem; font-weight:800; text-decoration:none;
+  box-shadow: var(--shadow-sm);
+}
+.gh-btn svg{ width:18px; height:18px; }
+
+/* Divider between rows */
+.row-card + .row-card{
+  padding-top: 24px;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .row-card{ grid-template-columns: 1fr; }
+  .row-media{ grid-template-rows: 160px 160px; }
+}

@@ -1,6 +1,8 @@
+// src/components/Nav.jsx
 import React, { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import "./Nav.css";
-import Logo from "../assets/MG-LOGO.svg"; // your Figma-made logo
+import Logo from "../assets/MG-LOGO.svg";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -12,53 +14,98 @@ export default function Nav() {
       setScrolled(window.scrollY > 8);
       const h = document.documentElement;
       const p = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      setProgress(p || 0);
+      setProgress(p);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const closeOnResize = () => {
+      if (window.innerWidth >= 900) setOpen(false);
+    };
+    window.addEventListener("resize", closeOnResize, { passive: true });
+    return () => window.removeEventListener("resize", closeOnResize);
+  }, []);
+
   return (
     <>
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="nav-container">
-          {/* Brand */}
-          <a className="logo" href="/" aria-label="Home">
-            <img src={Logo} alt="Makenzie Gray logo" />
-          </a>
+          <Link className="logo" to="/" aria-label="Go to Home">
+            {/* Keep the img; CSS controls height for crispness */}
+            <img src={Logo} alt="MG" />
+          </Link>
 
-          {/* Desktop links */}
           <div className={`nav-links ${open ? "open" : ""}`}>
-            <a href="/#projects">Projects</a>
-            <a href="/about">About</a>
+            <NavLink
+              to="/coding"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              Coding
+            </NavLink>
+            <NavLink
+              to="/design"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              Design
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? "active" : undefined)}
+            >
+              About
+            </NavLink>
           </div>
 
-          {/* Hamburger (mobile) */}
           <button
-            className="hamburger"
+            className={`hamburger ${open ? "open" : ""}`}
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={open}
+            aria-controls="mobile-panel"
           >
-            <span />
-            <span />
-            <span />
+            <span /><span /><span />
           </button>
         </div>
 
         {/* Mobile panel */}
-        <div className={`mobile-panel ${open ? "open" : ""}`}>
-          <a href="/#projects" onClick={() => setOpen(false)}>Projects</a>
-          <a href="/about" onClick={() => setOpen(false)}>About</a>
+        <div id="mobile-panel" className={`mobile-panel ${open ? "open" : ""}`}>
+          <NavLink
+            to="/coding"
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+            onClick={() => setOpen(false)}
+          >
+            Coding
+          </NavLink>
+          <NavLink
+            to="/design"
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+            onClick={() => setOpen(false)}
+          >
+            Design
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+            onClick={() => setOpen(false)}
+          >
+            About
+          </NavLink>
         </div>
 
         {/* Scroll progress */}
-        <div className="progress" style={{ width: `${progress}%` }} />
+        <div
+          className="progress"
+          style={{ width: `${progress}%` }}
+          role="progressbar"
+          aria-label="Scroll progress"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(progress)}
+        />
       </nav>
-
-      {/* Spacer to offset fixed nav height */}
-      <div className="nav-spacer" aria-hidden="true" />
     </>
   );
 }

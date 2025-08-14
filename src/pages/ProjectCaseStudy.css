@@ -1,0 +1,177 @@
+:root{
+  --sand:#f5f1ec;
+  --sand-2:#efe8dd;
+  --slate:#2f2f2f;
+  --fern:#4a7c59;
+  --sky:#6a9fb5;
+  --clay:#93785B;
+  --card:#fff;
+
+  --shadow-lg:0 18px 48px rgba(0,0,0,.14);
+  --shadow-md:0 12px 28px rgba(0,0,0,.12);
+  --shadow-sm:0 8px 18px rgba(0,0,0,.10);
+}
+
+/* Page shell */
+.cs{
+  color:var(--slate);
+  background:linear-gradient(180deg,var(--sand) 0%, var(--sand-2) 100%);
+  min-height:100vh;
+}
+
+/* ---------- HERO ---------- */
+.cs-hero{
+  position:relative;
+  overflow:hidden;
+  padding: clamp(2.2rem, 5vw, 3rem) 1rem 2rem;
+}
+.cs-hero-bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(900px 500px at 20% 20%, rgba(106,159,181,.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 80%, rgba(74,124,89,.18), transparent 60%),
+    linear-gradient(180deg, var(--sand) 0%, var(--sand-2) 100%);
+  opacity:.9;
+  pointer-events:none;
+}
+.cs-hero-inner{
+  position:relative; z-index:1;
+  width:min(1100px, 92vw); margin:0 auto;
+}
+
+.cs-breadcrumb{
+  display:flex; gap:.5rem; align-items:center;
+  color:#6f6f6f; font-weight:600; margin-bottom:.75rem;
+}
+.cs-crumb{ color:#6f6f6f; text-decoration:none; }
+.cs-crumb:hover{ color:#444; }
+.cs-crumb.current{ color:#444; }
+
+.cs-title{
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height:1.1; margin:.25rem 0 .5rem;
+}
+.cs-sub{
+  max-width:800px; opacity:.9; line-height:1.6; margin:0 0 1rem;
+}
+
+.cs-meta{
+  display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0 1.25rem;
+}
+.cs-tag{
+  background:#eef3f6; color:#355163; border:1px solid rgba(106,159,181,.25);
+  padding:.35rem .6rem; border-radius:999px; font-weight:700; font-size:.85rem;
+}
+.cs-pill{
+  background:#e8efe7; color:#2f5a41; border:1px solid rgba(74,124,89,.2);
+  padding:.35rem .6rem; border-radius:999px; font-weight:700; font-size:.85rem;
+}
+
+.cs-actions{ display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.25rem; }
+.cs-btn{
+  text-decoration:none; font-weight:800; border-radius:10px;
+  padding:.7rem 1rem; display:inline-flex; align-items:center; gap:.4rem;
+  transition:transform .15s, box-shadow .2s, background .25s, color .25s, border-color .25s;
+}
+.cs-btn.primary{ background:var(--fern); color:#fff; box-shadow:var(--shadow-sm); }
+.cs-btn.primary:hover{ transform:translateY(-2px); box-shadow:var(--shadow-md); }
+.cs-btn.ghost{ background:#fff; color:#333; border:1px solid rgba(0,0,0,.08); }
+.cs-btn.ghost:hover{ transform:translateY(-2px); box-shadow:var(--shadow-sm); }
+
+/* ---------- BODY ---------- */
+.cs-body{
+  width:min(1200px, 96vw);
+  margin: 0 auto 3rem;
+  display:grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.75rem;
+}
+
+/* Sticky in‑page TOC (desktop) */
+.cs-toc{
+  position:sticky; top:88px; align-self:start;
+  background:#ffffffc9; backdrop-filter: blur(8px);
+  border:1px solid rgba(0,0,0,.06); border-radius:12px;
+  box-shadow: var(--shadow-sm);
+  padding:.6rem;
+  display:flex; flex-direction:column; gap:.25rem;
+}
+.cs-toc a{
+  color:#555; text-decoration:none; font-weight:700; border-radius:8px;
+  padding:.5rem .6rem;
+}
+.cs-toc a:hover{ background:#f2f4f7; color:#2f2f2f; }
+
+/* Content area */
+.cs-content{
+  background:var(--card); border:1px solid rgba(0,0,0,.06);
+  border-radius:16px; box-shadow:var(--shadow-lg);
+  padding: clamp(1rem, 2vw, 1.4rem);
+}
+
+.cs-section + .cs-section{ margin-top:1.25rem; }
+.cs-section h2{
+  color:var(--fern); margin:.25rem 0 .75rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+}
+
+/* Cards layout for facts */
+.cs-cards{
+  display:grid; gap:1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.cs-card{
+  background:#fff; border:1px solid rgba(0,0,0,.06);
+  border-radius:12px; padding:1rem;
+  box-shadow: var(--shadow-sm);
+}
+.cs-card h3{ margin:.1rem 0 .5rem; font-size:1.05rem; }
+.cs-list{ margin:.4rem 0 0; padding-left:1.1rem; }
+.cs-list li{ margin:.25rem 0; }
+
+/* Timeline for challenges */
+.cs-timeline{
+  position:relative; display:grid; gap:1rem;
+  padding-left:1rem; margin-left:.25rem;
+}
+.cs-timeline::before{
+  content:""; position:absolute; left:0; top:.2rem; bottom:.2rem;
+  width:2px; background:linear-gradient(var(--sky), var(--clay));
+  border-radius:2px; opacity:.35;
+}
+.cs-timeItem{ position:relative; padding-left:.6rem; }
+.cs-timeItem::before{
+  content:""; position:absolute; left:-.38rem; top:.3rem;
+  width:.6rem; height:.6rem; border-radius:999px; background:var(--sky);
+  box-shadow:0 0 0 3px rgba(106,159,181,.2);
+}
+
+/* Learnings grid */
+.cs-grid-two{
+  display:grid; gap:1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Outcome */
+.cs-lead{ font-weight:600; }
+
+/* Gallery (optional images) */
+.cs-gallery{
+  display:grid; gap:.75rem; margin-top:.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.cs-gallery img{
+  width:100%; height:auto; border-radius:12px;
+  border:1px solid rgba(0,0,0,.06); box-shadow:var(--shadow-sm);
+}
+
+/* Footer actions */
+.cs-bottomActions{
+  display:flex; gap:.6rem; flex-wrap:wrap; margin-top:1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .cs-body{ grid-template-columns: 1fr; }
+  .cs-toc{ display:none; }
+}

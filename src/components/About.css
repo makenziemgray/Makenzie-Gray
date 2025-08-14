@@ -1,32 +1,24 @@
-/* About & Contact Merged Styles */
-
-/* Theme variables */
 :root {
   --background-color: #f5f1ec;
   --text-color: #2f2f2f;
   --primary-accent: #6a9fb5;   /* sky blue */
   --secondary-accent: #4a7c59; /* fern green */
-  --card-bg: #ffffff;
-  --input-bg: #f0ece6;
-  --form-radius: 12px;
-  --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* -------------------- ABOUT SECTION -------------------- */
 .about-section {
   background-color: var(--background-color);
-  color: #93785B;
+  color: var(--text-color);
   min-height: 100vh;
+  padding: 4rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 4rem 1rem;
 }
 
-.about-section h2 {
+.about-title {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
   color: #93785B;
 }
 
@@ -40,9 +32,9 @@
 }
 
 .about-photo {
-  width: 300px; /* smaller photo */
+  width: 300px;
   height: 300px;
-  border-radius: 100px;
+  border-radius: 1.5rem;
   object-fit: cover;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -51,7 +43,6 @@
   font-size: 1.125rem;
   line-height: 1.75;
   text-align: center;
-  color: #444;
 }
 
 @media screen and (min-width: 768px) {
@@ -60,101 +51,101 @@
     align-items: flex-start;
     text-align: left;
   }
-
   .about-text {
     max-width: 600px;
   }
 }
 
-/* -------------------- CONTACT SECTION -------------------- */
-.contact {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  padding: 5rem 2rem;
-  width: 100%;
-  box-sizing: border-box;
+.skills-title {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #7b5f47;
   text-align: center;
 }
 
-.contact h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2.5rem;
-  color: var(--secondary-accent);
-  border-bottom: 2px solid var(--secondary-accent);
-  display: inline-block;
-  padding-bottom: 0.25rem;
+/* Ticker styles */
+.skills-ticker {
+  width: min(1100px, 100%);
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  backdrop-filter: blur(4px) saturate(120%);
+  -webkit-backdrop-filter: blur(4px) saturate(120%);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
 }
 
-.contact-form {
-  background-color: var(--card-bg);
-  padding: 2.5rem;
-  border-radius: var(--form-radius);
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto 2rem;
-  box-shadow: var(--box-shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: var(--input-bg);
-  color: var(--text-color);
-  font-family: inherit;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: 2px solid var(--primary-accent);
-}
-
-.contact-form button {
-  padding: 1rem 1.25rem;
-  background-color: var(--secondary-accent);
-  color: #ffffff;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.contact-form button:hover {
-  background-color: var(--primary-accent);
-}
-
-.contact .links {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.contact .links a {
-  color: var(--secondary-accent);
-  text-decoration: none;
-  font-weight: 600;
+.ticker-track {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: color 0.3s;
-  font-size: 1.1rem;
+  gap: 22px;
+  padding: .6rem .4rem;
+  animation: ticker-scroll 10s linear infinite;
+}
+.skills-ticker:hover .ticker-track {
+  animation-play-state: paused;
 }
 
-.contact .links a:hover {
-  color: var(--primary-accent);
+.ticker-item {
+  display: inline-grid;
+  grid-template-columns: 42px auto;
+  align-items: center;
+  gap: .5rem;
+  padding: .42rem .65rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 6px 16px rgba(0,0,0,.07);
+  transition: transform .15s ease, background .15s ease;
+}
+.ticker-item:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.9);
 }
 
-@media screen and (max-width: 768px) {
-  .contact-form {
-    padding: 1.5rem;
+.ticker-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+.ticker-label {
+  font-weight: 800;
+  color: #3a3a3a;
+  white-space: nowrap;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Contact buttons */
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(255,255,255,0.8);
+  padding: .6rem 1rem;
+  border-radius: 8px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background .2s ease;
+}
+.contact-btn:hover {
+  background: rgba(255,255,255,1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
   }
 }
